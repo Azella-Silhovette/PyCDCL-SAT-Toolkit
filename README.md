@@ -16,22 +16,22 @@ PyCDCL-SAT-Toolkit is a lightweight Python-based toolkit for experimenting with 
 
 ## Repository Structure
 
-PyCDCL-SAT-Toolkit/
- ├── README.md
- ├── LICENSE
- ├── .gitignore
- ├── requirements.txt
- ├── src/
- │   ├── cdcl_solver.py
- │   └── generate_test_cases.py
- ├── examples/
- │   ├── sat_case_300.cnf
- │   ├── sat_case_400.cnf
- │   ├── sat_case_600.cnf
- │   └── unsat_case.cnf
- └── tests/
- ├── test_solver.py
- └── test_case_generation.py
+-PyCDCL-SAT-Toolkit/
+ -├── README.md
+ -├── LICENSE
+ -├── .gitignore
+ -├── requirements.txt
+ -├── src/
+ -│   ├── cdcl_solver.py
+ -│   └── generate_test_cases.py
+ -├── examples/
+ -│   ├── sat_case_300.cnf
+ -│   ├── sat_case_400.cnf
+ -│   ├── sat_case_600.cnf
+ -│   └── unsat_case.cnf
+ -└── tests/
+ -├── test_solver.py
+ -└── test_case_generation.py
 
 - **`src/`**  
   Contains the two Python scripts:  
