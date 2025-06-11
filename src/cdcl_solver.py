@@ -127,7 +127,7 @@ class CDCLSolver:
         while True:
             if all(self.assign_val[i] != 0 for i in range(1, self.num_vars+1)):
                 return True
-            var = self.pick_branch_var()
+            var = self.branch_var()
             if var is None:
                 return True
             self.level += 1
