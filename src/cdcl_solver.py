@@ -30,7 +30,7 @@ def parse_dimacs(file_path):
                     lits.append(lit)
                 if not lits:
                     if parts and parts[0] == '0':
-                        return vars_count, [[]]
+                        clauses.append([])
                     continue
                 key = tuple(sorted(lits))
                 if key in seen:
@@ -49,6 +49,9 @@ def solve_cdcl(vars_count, clauses):
     reason = {}
     trail = []
     decision_level = 0
+
+    # !fix: if an empty clause is contained, return UNSAT.
+    if [] in clauses: return False, {}
 
     activity = {v: 0.0 for v in range(1, vars_count+1)}
     decay_counter = 0
@@ -166,8 +169,10 @@ def solve_cdcl(vars_count, clauses):
             return True, assignment
 
         if confl is None:
-            unass = [v for v in range(1, vars_count+1) if v not in assignment]
-            var = max(unass, key=lambda v: activity[v])
+            unassigned_vars = [v for v in range(1, vars_count + 1) if v not in assignment]
+            if not unassigned_vars: # All variables are assigned
+                return True, assignment # If no conflict by now, it's SAT
+            var = max(unassigned_vars, key=lambda v: activity[v])
             decision_level += 1
             lit = var
             if not enqueue(lit, None):
